@@ -16,9 +16,15 @@
  import NotFoundScreen from 'src/screens/NotFoundScreen';
  import TabOneScreen from '../screens/TabOneScreen';
  
+ import CreateRecordScreen from 'src/screens/Create/CreateRecordScreen';
  import SettingScreen from 'src/screens/Setting/SettingScreen';
  
- import { RootStackParamList, RootTabParamList, RootTabScreenProps } from 'src/types/index';
+ import {
+  CreateModalStackParamList,
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps
+} from 'src/types/index';
  import LinkingConfiguration from './LinkingConfiguration';
  
  export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -31,12 +37,7 @@
    );
  }
  
- /**
-  * A root stack navigator is often used for displaying modals on top of all other content.
-  * https://reactnavigation.org/docs/modal
-  */
  const Stack = createNativeStackNavigator<RootStackParamList>();
- 
  function RootNavigator() {
    return (
      <Stack.Navigator>
@@ -44,18 +45,25 @@
        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
        <Stack.Group screenOptions={{ presentation: 'modal' }}>
          <Stack.Screen name="Modal" component={ModalScreen} />
+         <Stack.Screen name="CreateStack" component={CreateStackNavigator} />
        </Stack.Group>
+
      </Stack.Navigator>
    );
  }
+
+ const CreateStack = createNativeStackNavigator<CreateModalStackParamList>();
+ function CreateStackNavigator() {
+  return (
+    <CreateStack.Navigator>
+      <CreateStack.Screen name="CreateRecordModal" component={CreateRecordScreen} options={{ headerShown: false }} />
+    </CreateStack.Navigator>
+  );
+}
+
  
- /**
-  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
-  * https://reactnavigation.org/docs/bottom-tab-navigator
-  */
  const BottomTab = createBottomTabNavigator<RootTabParamList>();
- 
- function BottomTabNavigator() {
+  function BottomTabNavigator() {
    const colorScheme = useColorScheme();
  
    return (
@@ -86,6 +94,24 @@
            ),
          })}
        />
+      <BottomTab.Screen
+        name="CreateRecord"
+        component={CreateStackNavigator}
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+            e.preventDefault();
+            // @ts-ignore
+            navigation.navigate('CreateStack', {
+              screen: 'CreateRecordModal',
+            });
+          },
+        })}
+        options={{
+          title: "記録",
+          headerShown: false,
+          tabBarIcon: ({ color }) => <TabBarIcon name="plus" color={color} />,
+        }}
+      />
        <BottomTab.Screen
          name="Setting"
          component={SettingScreen}

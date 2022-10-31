@@ -17,7 +17,12 @@
    Root: NavigatorScreenParams<RootTabParamList> | undefined;
    Modal: undefined;
    NotFound: undefined;
+   CreateStack: undefined;
  };
+
+ export type CreateModalStackParamList = {
+  CreateRecordModal: undefined;
+ }
  
  export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
    RootStackParamList,
@@ -28,6 +33,7 @@
    TabOne: undefined;
    TabTwo: undefined;
    Setting: undefined;
+   CreateRecord: undefined;
  };
  
  export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
