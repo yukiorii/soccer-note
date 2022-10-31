@@ -1,5 +1,5 @@
 import { SafeAreaView } from 'react-native';
-import { RootTabScreenProps } from '../types';
+import { RootTabScreenProps } from 'src/types';
 
 import {
   VStack,
