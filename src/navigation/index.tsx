@@ -19,6 +19,8 @@
  import CreateRecordScreen from 'src/screens/Create/CreateRecordScreen';
  import SettingScreen from 'src/screens/Setting/SettingScreen';
  
+ import i18n from 'src/utils/i18n/i18n';
+
  import {
   CreateModalStackParamList,
   RootStackParamList,
@@ -116,7 +118,7 @@
          name="Setting"
          component={SettingScreen}
          options={{
-           title: '設定',
+           title: i18n.t("setting"),
            tabBarIcon: ({ color }) => <TabBarIcon name="settings" color={color} />,
          }}
        />
