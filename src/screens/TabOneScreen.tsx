@@ -11,7 +11,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     <SafeAreaView>
       <VStack mt="4" alignItems={"center"} space="2">
         <Button w="32" size={"lg"} rounded={"full"} onPress={() => console.log("hello world")}>公式戦</Button>
-        <Button w="32" size={"lg"} rounded={"full"} onPress={() => console.log("hello world")}>公式戦</Button>
+        <Button w="32" size={"lg"} rounded={"full"} onPress={() => console.log("hello world")}>練習試合</Button>
       </VStack>
     </SafeAreaView>
   );

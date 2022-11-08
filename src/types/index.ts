@@ -42,11 +42,12 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
 >;
 
 export type MatchType = {
-  Type: number;
-  TeamScore: number,
-  OpponentScore: number,
-  Goal: number;
-  Shoot: number;
-  Assist: number;
-  PlayingTime: number;
+  type: number;
+  opponent: string,
+  teamScore: number,
+  opponentScore: number,
+  goal: number;
+  shoot: number;
+  assist: number;
+  playingTime: number;
 }

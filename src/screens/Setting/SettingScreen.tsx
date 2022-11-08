@@ -27,7 +27,6 @@ export default function SettingScreen({ navigation }: RootTabScreenProps<'Settin
             </Box>
           </HStack>
         </TouchableOpacity>
-        <Divider />
 
       </VStack>
     </SafeAreaView>
