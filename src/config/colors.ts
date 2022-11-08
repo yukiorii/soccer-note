@@ -64,3 +64,42 @@ export default {
   light: lightColors,
   dark: darkColors,
 };
+
+export const calendarColors = [
+  "#e84330",
+  "#ff836f",
+  "#f49d38",
+  "#f8d100",
+  "#4a9e28",
+  "#008f6a",
+  "#007d94",
+  "#0667cc",
+  "#1d3895",
+  "#292662",
+];
+
+export const brightCalendarColors = [
+  "#e7b5b0",
+  "#ffddd7",
+  "#f3d7b6",
+  "#f6e89c",
+  "#9ebc92",
+  "#7baa9e",
+  "#799ca2",
+  "#93b6da",
+  "#8a96c2",
+  "#7e7ca6",
+];
+
+export const calendarColorsForDarkMode = [
+  "#9e0142",
+  "#d53e4f",
+  "#f46d43",
+  "#fdae61",
+  "#fee08b",
+  "#e6f598",
+  "#abdda4",
+  "#66c2a5",
+  "#3288bd",
+  "#5e4fa2",
+];
