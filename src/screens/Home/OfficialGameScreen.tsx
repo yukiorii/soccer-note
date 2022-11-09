@@ -1,4 +1,8 @@
-import { SafeAreaView } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+import TopTabBar from 'src/components/TopTabBar';
+import RecordTable from 'src/components/Record/RecordTable';
+import RecordChart from 'src/components/Record/RecordChart';
 
 import {
   VStack,
@@ -9,11 +13,10 @@ import { HomeStackParamList } from 'src/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export default function OfficialGameScreen({ navigation }: NativeStackScreenProps<HomeStackParamList, 'OfficialGame'>) {
-  return (
-    <SafeAreaView>
-      <VStack mt="4" alignItems={"center"} space="2">
-        <Button w="32" size={"lg"} rounded={"full"} onPress={() => console.log("hello world")}>公式戦</Button>
-      </VStack>
-    </SafeAreaView>
-  );
+  const Tab = createMaterialTopTabNavigator();
+
+  return <Tab.Navigator keyboardDismissMode='on-drag' tabBar={props => <TopTabBar {...props} />}>
+    <Tab.Screen name={"表"} component={RecordTable} />
+    <Tab.Screen name={"グラフ"} component={RecordChart} />
+  </Tab.Navigator>
 }

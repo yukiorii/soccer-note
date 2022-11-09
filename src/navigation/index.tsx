@@ -7,7 +7,6 @@ import { useColorMode } from 'native-base';
 
 import Colors, { lightTheme, darkTheme } from 'src/constants/Colors';
 import useColorScheme from 'src/hooks/useColorScheme';
-import NotFoundScreen from 'src/screens/NotFoundScreen';
 
 import HomeScreen from 'src/screens/Home/HomeScreen';
 import OfficialGameScreen from 'src/screens/Home/OfficialGameScreen';
@@ -42,7 +41,6 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="CreateStack" component={CreateStackNavigator} options={{ headerShown: false }} />
       </Stack.Group>

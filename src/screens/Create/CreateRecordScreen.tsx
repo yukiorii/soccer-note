@@ -75,8 +75,8 @@ export default function CreateRecordScreen({ navigation }: NativeStackScreenProp
     }
 
     setMatch((curVal) => {
-      curVal.push(newMatch)
-      return curVal
+      const newVal = curVal.concat(newMatch)
+      return newVal
     })
 
     toast.show({
