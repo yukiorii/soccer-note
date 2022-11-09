@@ -1,22 +1,16 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
-import { Feather, FontAwesome } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
 import { useColorMode } from 'native-base';
 
 import Colors, { lightTheme, darkTheme } from 'src/constants/Colors';
 import useColorScheme from 'src/hooks/useColorScheme';
-import ModalScreen from 'src/screens/ModalScreen';
 import NotFoundScreen from 'src/screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
 
+import HomeScreen from 'src/screens/Home/HomeScreen';
+import OfficialGameScreen from 'src/screens/Home/OfficialGameScreen';
 import CreateRecordScreen from 'src/screens/Create/CreateRecordScreen';
 import SettingScreen from 'src/screens/Setting/SettingScreen';
 
@@ -24,9 +18,9 @@ import i18n from 'src/utils/i18n/i18n';
 
 import {
   CreateModalStackParamList,
+  HomeStackParamList,
   RootStackParamList,
   RootTabParamList,
-  RootTabScreenProps
 } from 'src/types/index';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -50,11 +44,19 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
         <Stack.Screen name="CreateStack" component={CreateStackNavigator} options={{ headerShown: false }} />
       </Stack.Group>
-
     </Stack.Navigator>
+  );
+}
+
+const HomeStack = createNativeStackNavigator<HomeStackParamList>();
+function HomeStackNavigator() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} options={{ title: "ホーム", headerShown: true }} />
+      <HomeStack.Screen name="OfficialGame" component={OfficialGameScreen} options={{ title: "公式戦", headerShown: true }} />
+    </HomeStack.Navigator>
   );
 }
 
@@ -66,7 +68,6 @@ function CreateStackNavigator() {
     </CreateStack.Navigator>
   );
 }
-
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
@@ -80,25 +81,12 @@ function BottomTabNavigator() {
       }}>
       <BottomTab.Screen
         name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+        component={HomeStackNavigator}
+        options={{
           title: i18n.t("home"),
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+        }}
       />
       <BottomTab.Screen
         name="CreateRecord"

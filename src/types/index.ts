@@ -20,6 +20,11 @@ export type RootStackParamList = {
   CreateStack: undefined;
 };
 
+export type HomeStackParamList = {
+  Home: undefined;
+  OfficialGame: undefined;
+}
+
 export type CreateModalStackParamList = {
   CreateRecordModal: undefined;
 }
