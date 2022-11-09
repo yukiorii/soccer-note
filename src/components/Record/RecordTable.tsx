@@ -14,6 +14,7 @@ import {
 
 const RecordTable = (props: any) => {
   const allMatch = useRecoilValue(matchState)
+  const reversedMatch = [...allMatch].reverse()
 
   const tableHead = ['対戦相手', 'スコア', '勝敗', '得点', 'シュート', 'アシスト', '出場時間']
   const widthArr = [100, 60, 50, 50, 60, 60, 60]
@@ -27,7 +28,7 @@ const RecordTable = (props: any) => {
         <ScrollView style={styles.dataWrapper}>
           <Table borderStyle={{ borderWidth: 1, borderColor: '#e0e0e0' }}>
             {
-              allMatch.map((match: MatchType, index) => {
+              reversedMatch.map((match: MatchType, index) => {
                 const result = (match.teamScore == match.opponentScore) ? "引き分け" : (match.teamScore > match.opponentScore) ? "勝ち" : "負け"
                 const rowData = [
                   match.opponent,
