@@ -52,8 +52,8 @@ const HomeStack = createNativeStackNavigator<HomeStackParamList>();
 function HomeStackNavigator() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} options={{ title: "ホーム", headerShown: true }} />
-      <HomeStack.Screen name="OfficialGame" component={OfficialGameScreen} options={{ title: "公式戦", headerShown: true }} />
+      <HomeStack.Screen name="Home" component={HomeScreen} options={{ title: "ホーム", headerShown: false }} />
+      <HomeStack.Screen name="OfficialGame" component={OfficialGameScreen} options={{ title: "公式戦", headerShown: true, headerBackTitleVisible: false }} />
     </HomeStack.Navigator>
   );
 }
@@ -99,7 +99,7 @@ function BottomTabNavigator() {
           },
         })}
         options={{
-          title: "記録",
+          title: "登録",
           headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="plus" color={color} />,
         }}

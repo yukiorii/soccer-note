@@ -5,4 +5,5 @@ export default {
   select_opponent: "Select opponent",
   close: "Close",
   add: "Add",
+  cancel: "Cancel",
 };

@@ -5,4 +5,5 @@ export default {
   select_opponent: "対戦相手を選択",
   close: "閉じる",
   add: "追加",
+  cancel: "キャンセル",
 };

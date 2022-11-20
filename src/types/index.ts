@@ -55,4 +55,5 @@ export type MatchType = {
   shoot: number;
   assist: number;
   playingTime: number;
+  targetDate: Date;
 }
