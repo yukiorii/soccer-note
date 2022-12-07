@@ -6,4 +6,6 @@ export default {
   close: "Close",
   add: "Add",
   cancel: "Cancel",
+  official_game: "Official Game",
+  practice_game: "Practice Game",
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Table, Row } from 'react-native-table-component';
+import { format } from 'date-fns';
 
 import { useRecoilValue } from 'recoil';
 import { matchState } from 'src/atoms/MatchAtom';
@@ -16,8 +17,8 @@ const RecordTable = (props: any) => {
   const allMatch = useRecoilValue(matchState)
   const reversedMatch = [...allMatch].reverse()
 
-  const tableHead = ['対戦相手', 'スコア', '勝敗', '得点', 'シュート', 'アシスト', '出場時間']
-  const widthArr = [100, 60, 50, 50, 60, 60, 60]
+  const tableHead = ['日付', '対戦相手', 'スコア', '勝敗', '得点', 'シュート', 'アシスト', '出場時間']
+  const widthArr = [80, 100, 60, 50, 50, 60, 60, 60]
 
   return <View style={styles.container}>
     <ScrollView horizontal={true}>
@@ -28,9 +29,10 @@ const RecordTable = (props: any) => {
         <ScrollView style={styles.dataWrapper}>
           <Table borderStyle={{ borderWidth: 1, borderColor: '#e0e0e0' }}>
             {
-              reversedMatch.map((match: MatchType, index) => {
+              allMatch.map((match: MatchType, index) => {
                 const result = (match.teamScore == match.opponentScore) ? "引き分け" : (match.teamScore > match.opponentScore) ? "勝ち" : "負け"
                 const rowData = [
+                  format(new Date(match.targetDate), 'M月d日'),
                   match.opponent,
                   match.teamScore + "-" + match.opponentScore,
                   result,

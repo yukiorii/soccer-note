@@ -26,7 +26,8 @@ export type HomeStackParamList = {
 }
 
 export type CreateModalStackParamList = {
-  CreateRecordModal: undefined;
+  SelectCategoryModal: undefined;
+  CreateMatchModal: { matchType: number };
 }
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

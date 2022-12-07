@@ -4,11 +4,6 @@ import TopTabBar from 'src/components/TopTabBar';
 import RecordTable from 'src/components/Record/RecordTable';
 import RecordChart from 'src/components/Record/RecordChart';
 
-import {
-  VStack,
-  Button,
-} from "native-base";
-
 import { HomeStackParamList } from 'src/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 

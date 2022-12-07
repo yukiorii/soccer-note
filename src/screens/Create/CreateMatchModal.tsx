@@ -40,10 +40,12 @@ const colorSchemes = {
   selected: "darkBlue",
 }
 
-export default function CreateRecordScreen({ navigation }: NativeStackScreenProps<CreateModalStackParamList, 'CreateRecordModal'>) {
+export default function CreateMatchScreen({ navigation, route }: NativeStackScreenProps<CreateModalStackParamList, 'CreateMatchModal'>) {
   const { colorMode } = useColorMode();
   const theme = useTheme()
   const toast = useToast();
+
+  const { matchType } = route.params
 
   const [showDatePicker, setShowDatePicker] = useState(false)
 
@@ -61,14 +63,13 @@ export default function CreateRecordScreen({ navigation }: NativeStackScreenProp
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text fontSize={"lg"} fontWeight="medium">{i18n.t("cancel")}</Text>
-        </TouchableOpacity>
-      ),
+      headerTitle: () => {
+        const title = (matchType == MATCH_TYPE.公式戦) ? i18n.t("official_game") : i18n.t("practice_game")
+        return <Text fontWeight={"bold"} fontSize={"lg"}>{title}</Text>
+      },
       headerRight: () => (
         <TouchableOpacity onPress={Save}>
-          <Text fontSize={"lg"}>{i18n.t("add")}</Text>
+          <Text fontWeight={"bold"} fontSize={"lg"}>{i18n.t("add")}</Text>
         </TouchableOpacity>
       )
     });
@@ -86,7 +87,7 @@ export default function CreateRecordScreen({ navigation }: NativeStackScreenProp
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
 
     const newMatch: MatchType = {
-      type: MATCH_TYPE.公式戦,
+      type: matchType,
       opponent: opponent,
       teamScore: teamScore,
       opponentScore: opponentScore,

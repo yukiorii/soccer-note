@@ -6,4 +6,6 @@ export default {
   close: "閉じる",
   add: "追加",
   cancel: "キャンセル",
+  official_game: "公式戦",
+  practice_game: "練習試合",
 };

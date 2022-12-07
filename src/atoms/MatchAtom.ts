@@ -9,6 +9,15 @@ export const matchState = atom<MatchType[]>({
   effects_UNSTABLE: [persistAtom('match')],
 });
 
+export const matchByTypeState = selectorFamily({
+  key: 'matchByTypeState',
+  get: (type: number) => ({ get }) => {
+    return get(matchState).filter((x: MatchType) => {
+      return x.type == type
+    });
+  },
+});
+
 export const sameMonthMatchState = selectorFamily({
   key: 'sameMonthMatch',
   get: (date: Date) => ({ get }) => {

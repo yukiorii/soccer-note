@@ -10,7 +10,10 @@ import useColorScheme from 'src/hooks/useColorScheme';
 
 import HomeScreen from 'src/screens/Home/HomeScreen';
 import OfficialGameScreen from 'src/screens/Home/OfficialGameScreen';
-import CreateRecordScreen from 'src/screens/Create/CreateRecordScreen';
+
+import CreateMatchModal from 'src/screens/Create/CreateMatchModal';
+import SelectCategoryModal from 'src/screens/Create/SelectCategoryModal';
+
 import SettingScreen from 'src/screens/Setting/SettingScreen';
 
 import i18n from 'src/utils/i18n/i18n';
@@ -62,7 +65,8 @@ const CreateStack = createNativeStackNavigator<CreateModalStackParamList>();
 function CreateStackNavigator() {
   return (
     <CreateStack.Navigator>
-      <CreateStack.Screen name="CreateRecordModal" component={CreateRecordScreen} options={{ title: "記録追加", headerShown: true }} />
+      <CreateStack.Screen name="SelectCategoryModal" component={SelectCategoryModal} options={{ title: "記録追加", headerShown: true }} />
+      <CreateStack.Screen name="CreateMatchModal" component={CreateMatchModal} options={{ headerShown: true, headerBackTitleVisible: false }} />
     </CreateStack.Navigator>
   );
 }
