@@ -67,7 +67,7 @@ const CreateStack = createNativeStackNavigator<CreateModalStackParamList>();
 function CreateStackNavigator() {
   return (
     <CreateStack.Navigator>
-      <CreateStack.Screen name="SelectCategoryModal" component={SelectCategoryModal} options={{ title: "記録追加", headerShown: true }} />
+      <CreateStack.Screen name="SelectCategoryModal" component={SelectCategoryModal} options={{ title: "記録登録", headerShown: true }} />
       <CreateStack.Screen name="CreateMatchModal" component={CreateMatchModal} options={{ headerShown: true, headerBackTitleVisible: false }} />
     </CreateStack.Navigator>
   );
@@ -105,7 +105,7 @@ function BottomTabNavigator() {
           },
         })}
         options={{
-          title: "登録",
+          title: "記録登録",
           headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="plus" color={color} />,
         }}
