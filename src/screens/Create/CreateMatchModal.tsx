@@ -111,6 +111,7 @@ export default function CreateMatchScreen({ navigation, route }: NativeStackScre
 
     // モーダル閉じる
     navigation.popToTop();
+    navigation.goBack();
   }
 
   const shouldSetResponse = () => true;
