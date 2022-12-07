@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 
 import { useRecoilValue } from 'recoil';
-import { matchState, sameMonthMatchState } from 'src/atoms/MatchAtom';
+import { matchState, sameMonthMatchState, matchByTypeState } from 'src/atoms/MatchAtom';
 
 import {
   Box,
@@ -16,18 +16,30 @@ import {
 
 import { HomeStackParamList } from 'src/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { MATCH_TYPE } from 'src/config/const';
 
 export default function HomeScreen({ navigation }: NativeStackScreenProps<HomeStackParamList, 'Home'>) {
   const allMatch = useRecoilValue(matchState)
+  const officalMatch = useRecoilValue(matchByTypeState(MATCH_TYPE.公式戦))
+  const practiceMatch = useRecoilValue(matchByTypeState(MATCH_TYPE.練習試合))
   const sameMonthMatch = useRecoilValue(sameMonthMatchState(new Date()))
 
   const OfficialGameButtonPressed = () => {
-    if (allMatch.length == 0) {
+    if (officalMatch.length == 0) {
       Alert.alert("まだ記録がありません")
       return
     }
     navigation.navigate("OfficialGame")
   }
+
+  const PracticeGameButtonPressed = () => {
+    if (practiceMatch.length == 0) {
+      Alert.alert("まだ記録がありません")
+      return
+    }
+    navigation.navigate("PracticeGame")
+  }
+
 
   return (
     <SafeAreaView>
@@ -55,10 +67,14 @@ export default function HomeScreen({ navigation }: NativeStackScreenProps<HomeSt
               </Box>
             }}
           </Pressable>
-          <Box bg="green.100" width="30%" h={32} borderRadius={20} p={4} alignItems="center" justifyContent={"center"}>
-            <Octicons name="people" size={60} color="black" />
-            <Text fontWeight="semibold">練習試合</Text>
-          </Box>
+          <Pressable w="32" onPress={PracticeGameButtonPressed}>
+            {({ isPressed }) => {
+              return <Box bg={isPressed ? "coolGray.100" : "green.100"} borderRadius={20} width={"100%"} h={32} p={4} alignItems="center" justifyContent={"center"}>
+                <Octicons name="people" size={60} color="black" />
+                <Text fontWeight="semibold">練習試合</Text>
+              </Box>
+            }}
+          </Pressable>
           <Box bg="blue.100" width="30%" h={32} borderRadius={20} p={4} alignItems="center" justifyContent={"center"}>
             <MaterialCommunityIcons name="soccer" size={60} color="black" />
             <Text fontWeight="semibold">練習</Text>

@@ -23,6 +23,7 @@ export type RootStackParamList = {
 export type HomeStackParamList = {
   Home: undefined;
   OfficialGame: undefined;
+  PracticeGame: undefined;
 }
 
 export type CreateModalStackParamList = {

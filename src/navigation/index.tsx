@@ -10,6 +10,7 @@ import useColorScheme from 'src/hooks/useColorScheme';
 
 import HomeScreen from 'src/screens/Home/HomeScreen';
 import OfficialGameScreen from 'src/screens/Home/OfficialGameScreen';
+import PracticeGameScreen from 'src/screens/Home/PracticeGameScreen';
 
 import CreateMatchModal from 'src/screens/Create/CreateMatchModal';
 import SelectCategoryModal from 'src/screens/Create/SelectCategoryModal';
@@ -57,6 +58,7 @@ function HomeStackNavigator() {
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} options={{ title: "ホーム", headerShown: false }} />
       <HomeStack.Screen name="OfficialGame" component={OfficialGameScreen} options={{ title: "公式戦", headerShown: true, headerBackTitleVisible: false }} />
+      <HomeStack.Screen name="PracticeGame" component={PracticeGameScreen} options={{ title: "練習試合", headerShown: true, headerBackTitleVisible: false }} />
     </HomeStack.Navigator>
   );
 }

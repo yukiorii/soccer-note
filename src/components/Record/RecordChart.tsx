@@ -3,6 +3,7 @@ import { Dimensions } from "react-native";
 
 import { useRecoilValue } from 'recoil';
 import { matchState } from 'src/atoms/MatchAtom';
+import { matchByTypeState } from 'src/atoms/MatchAtom';
 
 import { MatchType } from 'src/types';
 
@@ -16,12 +17,13 @@ import {
 } from "react-native-chart-kit";
 
 const RecordChart = (props: any) => {
-  const allMatch = useRecoilValue(matchState)
-  const reversedMatch = [...allMatch].reverse()
+  const matchType = props.route.params.type
+  const matchesByType = useRecoilValue(matchByTypeState(matchType))
+  const reversedMatch = [...matchesByType].reverse()
 
   const screenWidth = Dimensions.get("window").width;
   const shootData = {
-    labels: reversedMatch.map((match: MatchType) => {
+    labels: matchesByType.map((match: MatchType) => {
       return match.opponent
     }),
     datasets: [
